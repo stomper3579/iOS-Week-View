@@ -160,10 +160,6 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
                 startShow = start
                 endShow = end
             }
-            mainAttributedString.append(NSMutableAttributedString(
-                string: " (\(df.string(from: startShow)) - \(df.string(from: endShow)))",
-                attributes: convertToOptionalNSAttributedStringKeyDictionary(infoFontAttributes))
-            )
         }
         if self.location != "" {
             mainAttributedString.append(NSMutableAttributedString(string: " | \(self.location)", attributes: convertToOptionalNSAttributedStringKeyDictionary(infoFontAttributes)))
