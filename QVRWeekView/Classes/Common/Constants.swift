@@ -45,9 +45,9 @@ struct LayoutDefaults {
     // Default minimum event label scaling
     static let eventLabelMinimumFontSize = CGFloat(8)
     // Default horizontal padding of text in event labels
-    static let eventLabelHorizontalTextPadding = CGFloat(2)
+    static let eventLabelHorizontalTextPadding = CGFloat(10)
     // Default vertical padding of text in event labels
-    static let eventLabelVerticalTextPadding = CGFloat(2)
+    static let eventLabelVerticalTextPadding = CGFloat(10)
 
     // Default text of preview event
     static let previewEventText = "New Item"
