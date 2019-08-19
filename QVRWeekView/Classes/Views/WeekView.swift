@@ -122,6 +122,7 @@ open class WeekView: UIView {
         // Set clipping to bounds (prevents side bar, top bar and other sub view protrusion)
         self.clipsToBounds = true
         self.topBarView.clipsToBounds = true
+        self.sideBarView.backgroundColor = .white
     }
 
     /**
