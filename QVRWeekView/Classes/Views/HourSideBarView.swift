@@ -69,7 +69,7 @@ class HourSideBarView: UIView {
             self.view!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.addSubview(self.view!)
         }
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.white
 
         for label in hourLabels {
             label.font = TextVariables.hourLabelFont
