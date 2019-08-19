@@ -242,6 +242,12 @@ class DayViewCell: UICollectionViewCell, CAAnimationDelegate {
             }
             let layer = eventsData[id]!.generateLayer(withFrame: newFrame, resizeText: resizeText)
 
+	    layer.path = UIBezierPath(
+                roundedRect: newFrame,
+                byRoundingCorners: [.bottomLeft, .bottomRight, .topLeft, .topRight],
+                cornerRadii: CGSize(width: 12, height: 12)
+                ).cgPath
+		
             self.eventLayers.append(layer)
             self.layer.addSublayer(layer)
         }
