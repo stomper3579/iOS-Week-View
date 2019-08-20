@@ -64,7 +64,7 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
     /**
      Main initializer. All properties.
      */
-    public init(id: String, title: String, startDate: Date, endDate: Date, location: String, color: UIColor, allDay: Bool) {
+    public init(id: String, title: String, startDate: Date, endDate: Date, location: String, color: UIColor, textColor: UIColor, allDay: Bool) {
         self.id = id
         self.title = title
         self.location = location
