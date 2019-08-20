@@ -25,6 +25,8 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
     public let location: String
     // Color of the event
     public let color: UIColor
+    // COlor of the event text
+    public let textColor: UIColor
     // Stores if event is an all day event
     public let allDay: Bool
     // Stores an optional gradient layer which will be used to draw event. Can only be set once.
@@ -67,6 +69,7 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
         self.title = title
         self.location = location
         self.color = color
+	self.textColor = textColor
         self.allDay = allDay
         guard startDate.compare(endDate).rawValue <= 0 else {
             self.startDate = startDate
@@ -77,18 +80,25 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
         self.endDate = endDate
     }
 
-    /**
+     /**
      Convenience initializer. All properties except for Int Id instead of String.
      */
     public convenience init(id: Int, title: String, startDate: Date, endDate: Date, location: String, color: UIColor, allDay: Bool) {
-        self.init(id: String(id), title: title, startDate: startDate, endDate: endDate, location: location, color: color, allDay: allDay)
+        self.init(id: String(id), title: title, startDate: startDate, endDate: endDate, location: location, color: color, textColor: TextVariables.eventLabelTextColor, allDay: allDay)
+    }
+    
+    /**
+     Convenience initializer. All properties except for Int Id instead of String.
+     */
+    public convenience init(id: String, title: String, startDate: Date, endDate: Date, location: String, color: UIColor, allDay: Bool) {
+        self.init(id: String(id), title: title, startDate: startDate, endDate: endDate, location: location, color: color, textColor: TextVariables.eventLabelTextColor, allDay: allDay)
     }
 
     /**
      Convenience initializer. String Id + no allDay parameter.
      */
     public convenience init(id: String, title: String, startDate: Date, endDate: Date, location: String, color: UIColor) {
-        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: location, color: color, allDay: false)
+        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: location, color: color, textColor: TextVariables.eventLabelTextColor, allDay: false)
     }
 
     /**
@@ -102,7 +112,14 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
      Convenience initializer. String Id + no allDay and location parameter.
      */
     public convenience init(id: String, title: String, startDate: Date, endDate: Date, color: UIColor) {
-        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: "", color: color, allDay: false)
+        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: "", color: color, textColor: TextVariables.eventLabelTextColor, allDay: false)
+    }
+    
+    /**
+     Convenience initializer. String Id + no allDay and location parameter.
+     */
+    public convenience init(id: String, title: String, startDate: Date, endDate: Date, color: UIColor, textColor: UIColor) {
+        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: "", color: color, textColor: textColor, allDay: false)
     }
 
     /**
@@ -123,7 +140,7 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
      Convenience initializer. String Id + allDay and no location parameter.
      */
     public convenience init(id: String, title: String, startDate: Date, endDate: Date, color: UIColor, allDay: Bool) {
-        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: "", color: color, allDay: allDay)
+        self.init(id: id, title: title, startDate: startDate, endDate: endDate, location: "", color: color, textColor: TextVariables.eventLabelTextColor, allDay: allDay)
     }
 
     /**
@@ -150,7 +167,7 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
     open func getDisplayString(withMainFont mainFont: UIFont = TextVariables.eventLabelFont, andInfoFont infoFont: UIFont = TextVariables.eventLabelInfoFont) -> NSAttributedString {
         let df = DateFormatter()
         df.dateFormat = "h:mm"
-        let mainFontAttributes: [String: Any] = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): mainFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): TextVariables.eventLabelTextColor.cgColor]
+        let mainFontAttributes: [String: Any] = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): mainFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): (textColor)]
         let infoFontAttributes: [String: Any] = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): infoFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): TextVariables.eventLabelTextColor.cgColor]
         let mainAttributedString = NSMutableAttributedString(string: self.title, attributes: convertToOptionalNSAttributedStringKeyDictionary(mainFontAttributes))
         if !self.allDay {
