@@ -11,7 +11,7 @@ import Foundation
 /**
  Class event data stores basic data needed by the rest of the code to calculate and draw events in the dayViewCells in the dayScrollView.
  */
-open class EventData: CustomStringConvertible, Equatable, Hashable {
+open class EventData: NSObject {
 
     // Id of the event
     public let id: String
@@ -34,13 +34,8 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
     // Stores an optional dictionary, containing the time of the original event before splitting
     private(set) var originalTime: [String: Date]?
 
-    // Hashvalue
-    public var hashValue: Int {
-        return id.hashValue
-    }
-
     // String descriptor
-    public var description: String {
+    override public var description: String {
         return "[Event: {id: \(id), startDate: \(startDate), endDate: \(endDate)}]\n"
     }
 
@@ -146,7 +141,7 @@ open class EventData: CustomStringConvertible, Equatable, Hashable {
     /**
      Convenience initializer.
      */
-    public convenience init() {
+    override public convenience init() {
         self.init(id: -1, title: "New Event", startDate: Date(), endDate: Date().addingTimeInterval(TimeInterval(exactly: 10000)!), color: UIColor.blue)
     }
 
