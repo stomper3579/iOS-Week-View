@@ -207,7 +207,7 @@ open class WeekView: UIView {
      Method delegates event view taps, and sends a callback with the event id up to the WeekViewDelegate.
      */
     func eventViewWasTapped(_ eventData: EventData) {
-        self.delegate?.didTapEvent(in: self, withId: eventData.id)
+        self.delegate?.didTapEvent(in: self, with: eventData)
     }
 
     /**
@@ -504,7 +504,7 @@ extension WeekView {
 @objc public protocol WeekViewDelegate: class {
     func didLongPressDayView(in weekView: WeekView, atDate date: Date)
 
-    func didTapEvent(in weekView: WeekView, withId eventId: String)
+    func didTapEvent(in weekView: WeekView, withId event: EventData)
 
     func eventLoadRequest(in weekView: WeekView, between startDate: Date, and endDate: Date)
 
