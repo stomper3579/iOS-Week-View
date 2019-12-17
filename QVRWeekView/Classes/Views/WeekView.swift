@@ -504,7 +504,7 @@ extension WeekView {
 @objc public protocol WeekViewDelegate: class {
     func didLongPressDayView(in weekView: WeekView, atDate date: Date)
 
-    func didTapEvent(in weekView: WeekView, withId event: EventData)
+    func didTapEvent(in weekView: WeekView, with event: EventData)
 
     func eventLoadRequest(in weekView: WeekView, between startDate: Date, and endDate: Date)
 
