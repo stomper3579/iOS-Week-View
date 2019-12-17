@@ -35,7 +35,7 @@ open class EventData: NSObject {
     private(set) var originalTime: [String: Date]?
 
     // String descriptor
-    override public var description: String {
+    override open var description: String {
         return "[Event: {id: \(id), startDate: \(startDate), endDate: \(endDate)}]\n"
     }
 
