@@ -76,7 +76,10 @@ public extension Date {
 
     // Returns a double which represents the time of self in terms of the hour.
     func getTimeInHours() -> Double {
-        let comps = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
+        var cal = Calendar.current
+        let timeZone = UserDefaults.standard.string(forKey: "timezone")
+        cal.timeZone = TimeZone(identifier: timeZone!)!
+        let comps = cal.dateComponents([.hour, .minute, .second], from: self)
         let hours = Double(comps.hour!)
         let minutes = Double(comps.minute!)
         let seconds = Double(comps.second!)
