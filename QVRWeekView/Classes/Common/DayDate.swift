@@ -34,7 +34,7 @@ public struct DayDate: Hashable, Comparable, CustomStringConvertible, Strideable
         return "\(day)-\(month)-\(year)-\(era)"
     }
 
-    var dateObj: Date {
+    public var dateObj: Date {
         var dateComps = dateComponents
         dateComps.hour = 12
         return Calendar.current.date(from: dateComps)!
