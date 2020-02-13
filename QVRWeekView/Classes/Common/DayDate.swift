@@ -81,7 +81,9 @@ public struct DayDate: Hashable, Comparable, CustomStringConvertible, Strideable
     }
 
     init(date: Date) {
-        let cal = Calendar.current
+        var cal = Calendar.current
+        let timeZone = UserDefaults.standard.string(forKey: "timezone")
+        cal.timeZone = TimeZone(identifier: timeZone!)!        
         self.day = cal.component(.day, from: date)
         self.month = cal.component(.month, from: date)
         self.year = cal.component(.year, from: date)
