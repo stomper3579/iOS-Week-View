@@ -259,6 +259,11 @@ open class EventData: NSObject {
     func checkForSplitting () -> [DayDate: EventData] {
         var splitEvents: [DayDate: EventData] = [:]
         let startDayDate = DayDate(date: startDate)
+        splitEvents[startDayDate] = self
+        return splitEvents
+	/* We don't split events over days.  This breaks all day events       
+	var splitEvents: [DayDate: EventData] = [:]
+        let startDayDate = DayDate(date: startDate)
         if startDate.isSameDayAs(endDate) {
             splitEvents[startDayDate] = self
         }
@@ -289,7 +294,7 @@ open class EventData: NSObject {
                 }
             }
         }
-        return splitEvents
+        return splitEvents */
     }
 
     public func remakeEventData(withStart start: Date, andEnd end: Date) -> EventData {
